@@ -10,9 +10,12 @@ function App() {
   useEffect(() =>{
       fetch(BASE_URL + 'post/all')
         .then(response => {
-          console.log(response.json());
+          const json = response.json()
+           // console.log(response.json());  comment this to get rid of this error TypeError: Failed to execute 'json' on 'Response': body stream already read
+          console.log(json)
+          
           if (response.ok){
-            return response.json()
+            return json
           }
           throw response
         })
