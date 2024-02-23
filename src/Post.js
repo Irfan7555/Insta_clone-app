@@ -4,7 +4,8 @@ import './Post.css'
 const BASE_URL = 'http://localhost:8000/'
 
 function Post({ post }){
-    const  [imageUrl, setImageUrl] = useState()
+    const  [imageUrl, setImageUrl] = useState('')
+    const [comments, setComments] = useState([])
 
     useEffect(() =>{
         if (post.image_url_type=='absolute'){
@@ -14,9 +15,15 @@ function Post({ post }){
         }
     })
 
+
+    useEffect(() =>{
+        setComments(post.comments)
+    }, [])
+
     return (
         <div className="post">
             <img className="post_image" src={imageUrl}/>
+            <h4 className="post_text">{ post.caption }</h4>
         </div>
     )
 }
